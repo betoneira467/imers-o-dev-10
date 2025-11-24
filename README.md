@@ -1,6 +1,6 @@
 Sportswxy-Brasil – Meu Portal de Pesquisa Esportiva
 
-Olá! Seja bem-vindo ao meu primeiro grande projeto web.
+Olá! Seja bem-vindo ao meu primeiro grande projeto web feito totalmente pelo celular.
 
 Este é um site de pesquisa focado no universo dos esportes, onde você pode buscar informações e dados sobre times e jogadores de diversas modalidades, como *Futebol*, *Basquete*, *Vôlei*, entre outras. A ideia foi criar um local simples e rápido para centralizar essa busca.
 
