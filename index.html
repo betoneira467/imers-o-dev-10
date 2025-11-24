@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Hub - Times, Jogadores e Classificação</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeLoginModal()">&times;</button>
+            <div class="modal-header">
+                <div class="mascot-container">
+                    <div id="mascotEyes" class="mascot-eyes">
+                        <div class="mascot-hand left-hand"></div>
+                        <div class="mascot-hand right-hand"></div>
+                        <span class="mascot-eye">👁️</span>
+                    </div>
+                </div>
+                <h2>Acesso Exclusivo</h2>
+                <p>Faça login para salvar seus times favoritos e receber alertas.</p>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required placeholder="seu.email@exemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" required placeholder="Digite sua senha">
+                    </div>
+                    <button type="submit" class="modal-btn">Entrar</button>
+                </form>
+                <p class="signup-text">Não tem conta? <a href="#">Cadastre-se aqui</a></p>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <button class="login-btn" onclick="openLoginModal()">Login / Cadastro</button>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Destaque do Dia</span>
+                <h1 id="heroTitle"></h1>
+                <p id="heroSubtitle"></p>
+                <div class="carousel-nav">
+                    <button class="hero-btn">Ver Notícias</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container search-container">
+            <div class="search-input-group">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por time, cidade ou esporte..." onkeyup="filterTeams()">
+                <button class="search-btn" onclick="filterTeams()">Buscar</button>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-sport="all" onclick="filterBySport('all')">Todos</button>
+                <button class="filter-btn" data-sport="futebol" onclick="filterBySport('futebol')">Futebol</button>
+                <button class="filter-btn" data-sport="vôlei" onclick="filterBySport('vôlei')">Vôlei</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="teams-results-section">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="section-title"><div class="title-bar"></div><span id="resultsTitle">Times em destaque</span></h2>
+                <span class="results-count">Total: <strong id="resultsCount">8</strong></span>
+            </div>
+            
+            <div id="resultsGrid" class="grid">
+                </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-state-icon">😢</div>
+                <p class="empty-state-text">Sua busca por **"<span id="searchTerm"></span>"** não retornou resultados.</p>
+                <button class="empty-state-btn" onclick="clearSearch()">Limpar Busca e Ver Todos</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="players-results-section">
+        <div class="container">
+            <h2 class="section-title"><div class="title-bar"></div>Jogadores Lendários e Atuais</h2>
+            <div class="search-input-group mb-4">
+                <input type="text" id="playerSearchInput" class="search-input" placeholder="Buscar por nome de jogador ou esporte..." onkeyup="filterPlayers()">
+            </div>
+            
+            <div id="playersGrid" class="player-grid">
+                </div>
+        </div>
+    </section>
+
+    <section class="classification-section">
+        <div class="container">
+            <h2 class="section-title"><div class="title-bar"></div>Tabelas do Futebol Brasileiro 2025</h2>
+             <div class="tabs-container">
+                <button class="tab-btn active" data-league="SerieA" onclick="renderClassification('SerieA')">Brasileirão Série A</button>
+                <button class="tab-btn" data-league="SerieB" onclick="renderClassification('SerieB')">Série B</button>
+                <button class="tab-btn" data-league="SerieC" onclick="renderClassification('SerieC')">Série C</button>
+                <button class="tab-btn" data-league="SerieD" onclick="renderClassification('SerieD')">Série D</button>
+            </div>
+            
+            <div id="classificationTableContainer">
+                </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3 class="footer-title">Sports <span class="db">Datahub</span></h3>
+            <p class="footer-text">
+                Um projeto de exibição de dados esportivos.
+            </p>
+            <div class="contact-info">
+                <p class="footer-text">
+                    Desenvolvido por:
+                    <a 
+                        href="https://www.instagram.com/coutinhowxyy" 
+                        target="_blank" 
+                        style="color: #E1306C; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px;"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.429a3.52 3.52 0 0 0-1.465.954A3.52 3.52 0 0 0 .42 2.75C.214 3.262.083 3.85.045 4.703.01 5.556 0 5.829 0 8s.01 2.444.048 3.297c.04.853.174 1.439.38 1.948.21.512.483.975.954 1.442.464.467.923.738 1.432.943.51.206 1.096.338 1.949.378C5.556 15.991 5.829 16 8 16s2.444-.01 3.297-.048c.853-.04 1.439-.174 1.948-.38.512-.21.975-.483 1.442-.954.467-.464.738-.923.943-1.432.206-.51.338-1.096.378-1.949C15.99 10.444 16 10.171 16 8s-.01-2.444-.048-3.297c-.04-.853-.174-1.439-.38-1.948a3.52 3.52 0 0 0-.954-1.465 3.52 3.52 0 0 0-1.442-.954c-.51-.206-1.096-.338-1.949-.378C10.444.01 10.171 0 8 0m0 2.13a5.87 5.87 0 1 1 0 11.74A5.87 5.87 0 0 1 8 2.13M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8m5.87-1.43a1.37 1.37 0 1 1-2.74 0 1.37 1.37 0 0 1 2.74 0"/>
+                            <circle cx="8" cy="8" r="3.2"/>
+                        </svg>
+                        @coutinhowxyy
+                    </a>
+                </p>
+            </div>
+            <p class="footer-text mt-4">&copy; 2025 Sports Datahub. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
