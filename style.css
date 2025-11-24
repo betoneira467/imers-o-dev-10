@@ -1,0 +1,746 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: hsl(222, 47%, 11%);
+    --foreground: hsl(213, 31%, 91%);
+    --primary: hsl(142, 70%, 50%); /* Verde Principal */
+    --primary-dark: hsl(142, 70%, 35%);
+    --danger: hsl(350, 70%, 50%); /* Vermelho (Rebaixamento) */
+    --info: hsl(230, 70%, 60%); /* Azul Claro (Acesso) */
+
+    /* NOVAS CORES PARA ZONAS */
+    --libertadores-g4: hsl(142, 70%, 65%); /* Verde mais claro para G4 */
+    --libertadores: hsl(142, 70%, 50%);    /* Verde original para G6/G8 */
+    --acesso-b: hsl(210, 80%, 60%);      /* Azul para acesso Série B/C */
+    --rebaixamento: hsl(0, 70%, 60%);     /* Vermelho para rebaixamento */
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6;
+    background: linear-gradient(135deg, #0f172a 0%, #1a1f35 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 20px 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+}
+
+.login-btn {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.login-btn:hover {
+    background-color: rgba(30, 41, 59, 0.5);
+    color: white;
+}
+
+/* HERO (Carrossel) */
+.hero {
+    height: 600px;
+    background: linear-gradient(135deg, #1a1f35 0%, #0f172a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out; 
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: 72px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #e2e8f0;
+    margin-bottom: 40px;
+}
+
+.hero-btn {
+    background: white;
+    color: #0f172a;
+    border: none;
+    padding: 16px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    background: #e2e8f0;
+    transform: scale(1.05);
+}
+
+/* SEARCH SECTION */
+.search-section, .players-results-section {
+    padding: 0 0 80px 0;
+}
+.search-section {
+    margin: -100px 0 80px 0;
+    position: relative;
+    z-index: 20;
+    padding: 0;
+}
+
+.search-container {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 116, 139, 0.5);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.search-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.search-input-group.mb-4 {
+    margin-bottom: 25px;
+}
+
+.search-input {
+    flex: 1;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 15px 20px;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+.search-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: var(--primary-dark);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid #475569;
+    color: #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* TÍTULO E GRID */
+.section-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.title-bar {
+    width: 3px;
+    height: 35px;
+    background: var(--primary);
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.results-count {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* GRID - TIMES */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card:hover {
+    border-color: rgba(34, 197, 94, 0.5);
+    background: rgba(30, 41, 59, 0.8);
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    border-bottom: 1px solid #334155;
+}
+
+.card-logo {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.card-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    padding: 8px; 
+}
+
+.card-title-group h3 {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.badge-futebol {
+    background: rgba(30, 58, 138, 0.8);
+    color: #93c5fd;
+}
+
+.badge-volei {
+    background: rgba(120, 53, 15, 0.8);
+    color: #fed7aa;
+}
+
+.card-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-info {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.card-description {
+    color: #cbd5e1;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+.card-link {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #334155;
+}
+
+.card-link a {
+    color: #22c55e;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* GRID - JOGADORES */
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.player-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.player-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.player-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #334155;
+}
+
+.player-info {
+    padding: 15px;
+}
+
+.wiki-link {
+    display: inline-block;
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+.wiki-link:hover {
+    color: #60a5fa;
+}
+
+/* FOOTER */
+footer {
+    background: #0f172a;
+    border-top: 1px solid #334155;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.footer-title {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.footer-title .db {
+    color: #64748b;
+}
+
+.footer-text {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Adicionar estilo para o Instagram no footer */
+.contact-info {
+    margin-top: 20px;
+}
+.contact-info .footer-text a {
+    transition: color 0.3s ease;
+}
+.contact-info .footer-text a:hover {
+    color: #C13584 !important; /* Cor mais escura no hover */
+}
+
+/* MODAL DE LOGIN (Manter como estava) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    max-width: 450px; 
+    width: 90%;
+    overflow: hidden;
+    margin: 40px 0;
+    position: relative;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 40px 30px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+    position: relative;
+    padding-top: 100px; 
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.form-group input {
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: white;
+    font-size: 14px;
+}
+
+.modal-btn {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* MASCOTE INTERATIVA (Manter como estava) */
+.mascot-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 140px; 
+    height: 140px; 
+    z-index: 30;
+    background: #1e293b;
+    border-radius: 50%;
+    border: 5px solid #0f172a;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+}
+
+.mascot-eye {
+    font-size: 40px; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.mascot-hand {
+    position: absolute;
+    width: 80px; 
+    height: 80px; 
+    background: #1e293b;
+    border-radius: 50%;
+    z-index: 20;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border: 3px solid #0f172a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.left-hand {
+    left: 0;
+    transform: translate(-80%, -50%);
+}
+
+.right-hand {
+    right: 0;
+    transform: translate(80%, -50%);
+}
+
+.hands-on-eyes .left-hand {
+    transform: translate(-20%, -50%);
+}
+
+.hands-on-eyes .right-hand {
+    transform: translate(20%, -50%);
+}
+
+.hands-on-eyes .mascot-eye {
+    opacity: 0;
+}
+/* FIM MASCOTE */
+
+/* --- SEÇÃO DE CLASSIFICAÇÃO ATUALIZADA --- */
+.classification-section {
+    padding: 60px 0;
+}
+
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: #334155;
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.classification-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 800px; /* Aumentado para melhor visualização */
+}
+
+.classification-table thead th {
+    background-color: #0f172a;
+    padding: 14px 15px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: help; 
+}
+
+.classification-table th,
+.classification-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+    white-space: nowrap;
+}
+
+.classification-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.classification-table tbody tr:hover {
+    background-color: rgba(30, 41, 59, 0.8);
+}
+
+.classification-table .team-col {
+    text-align: left;
+    font-weight: 600;
+    color: white;
+    min-width: 180px;
+}
+
+.classification-table .pos-col {
+    font-weight: 800;
+    font-size: 16px;
+}
+
+/* DESTAQUES DE ZONAS CORRIGIDOS */
+
+/* Zona de Libertadores (G4) - Cor Forte para vaga direta */
+.highlight-libertadores-g4 {
+    background-color: rgba(34, 197, 94, 0.15); 
+    border-left: 5px solid var(--libertadores-g4);
+}
+.highlight-libertadores-g4 .pos-col {
+    color: var(--libertadores-g4);
+}
+
+/* Zona de Libertadores (G6/G8) - Cor Padrão para vagas pré ou Sul-Americana */
+.highlight-libertadores {
+    background-color: rgba(34, 197, 94, 0.05); 
+    border-left: 5px solid var(--libertadores);
+}
+.highlight-libertadores .pos-col {
+    color: var(--libertadores);
+}
+
+/* Zona de Acesso (Série B/C) - G4 de acesso direto */
+.highlight-acesso {
+    background-color: rgba(99, 102, 241, 0.15); 
+    border-left: 5px solid var(--acesso-b);
+}
+.highlight-acesso .pos-col {
+    color: var(--acesso-b);
+}
+
+/* Zona de Acesso (Série D - Vaga na C) */
+.highlight-acesso-d {
+    background-color: rgba(255, 193, 7, 0.15); 
+    border-left: 5px solid #ffc107; /* Amarelo/Dourado */
+}
+.highlight-acesso-d .pos-col {
+    color: #ffc107;
+}
+
+/* Zona de Rebaixamento */
+.highlight-rebaixamento {
+    background-color: rgba(239, 68, 68, 0.15); 
+    border-left: 5px solid var(--rebaixamento);
+}
+.highlight-rebaixamento .pos-col {
+    color: var(--rebaixamento);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 40px;
+    }
+    .hero-content {
+        padding: 0 20px;
+    }
+    .search-input-group {
+        flex-direction: column;
+    }
+    .grid, .player-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    /* Diminuir um pouco o padding da tabela em mobile */
+    .classification-table th,
+    .classification-table td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}
