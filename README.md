@@ -32,5 +32,5 @@ O plano é continuar evoluindo este projeto, integrando no futuro APIs de dados 
 Fico à disposição para feedback e para falar sobre desenvolvimento. Este é o meu primeiro passo, e espero que venham muitos mais!
 
 Contato:
-* Instagram: @coutinhowxyy
+* Instagram: https://www.instagram.com/coutinhowxyy
 * LinkedIn: www.linkedin.com/in/matheuscoutinho2011
